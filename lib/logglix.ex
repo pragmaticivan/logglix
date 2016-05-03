@@ -24,7 +24,7 @@ defmodule Logglix do
     this file.
         config :logger, :logglix,
           loggly_key: System.get_env("LOGGLY_KEY"),
-          tags: ['elixir'],
+          tags: ["elixir"],
           level: :info,
           environment: :prod
 

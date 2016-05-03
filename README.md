@@ -1,20 +1,34 @@
-# Logglix
+Logglix
+=================
 
-**TODO: Add description**
+A simple elixir `Logger` backend which sends logs to Loggly service.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+`Logglix` is a custom backend for the elixir `:logger` application. As
+such, it relies on the `:logger` application to start the relevant processes.
 
-  1. Add logglix to your list of dependencies in `mix.exs`:
 
-        def deps do
-          [{:logglix, "~> 0.0.1"}]
-        end
+1. Add logger_loggly_backend to your list of dependencies in `mix.exs`:
+```elixir
+def deps do
+  [{:logglix, "~> 0.0.1"}]
+end
+```
 
-  2. Ensure logglix is started before your application:
+2. Ensure logger_loggly_backend is started before your application:
+```elixir
+def application do
+  [applications: [:logglix, :httpoison]]
+end
 
-        def application do
-          [applications: [:logglix]]
-        end
+3. Configure the logger
+```elixir
+config :logger,
+  backends: [{Logglix, :loggly}, :console]
 
+  config :logger, :logglix,
+    loggly_key: "your loggly key",
+    tags: ["elixir"],
+    level: :info
+```
