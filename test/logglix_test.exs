@@ -1,8 +1,9 @@
 defmodule LogglixTest do
-  use ExUnit.Case
-  doctest Logglix
+  use ExUnit.Case, async: false
+  require Logger
 
-  test "the truth" do
-    assert 1 + 1 == 2
-  end
+  @backend {Logglix, :test}
+
+  Logger.add_backend @backend
+
 end
