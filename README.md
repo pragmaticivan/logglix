@@ -37,4 +37,4 @@ config :logger, :logglix,
 
 ## Roadmap
 
-[ ] Subscription by environment
+[  ] Subscription by environment
