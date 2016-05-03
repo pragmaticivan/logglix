@@ -33,3 +33,8 @@ config :logger, :logglix,
   tags: ["elixir"],
   level: :info
 ```
+
+
+## Roadmap
+
+[ ] Subscription by environment
