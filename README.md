@@ -26,7 +26,7 @@ end
 Configure the logger
 ```elixir
 config :logger,
-  backends: [{Logglix, :loggly}, :console]
+  backends: [{Logglix, :logglix}, :console]
 
 config :logger, :logglix,
   loggly_key: "your loggly key",
