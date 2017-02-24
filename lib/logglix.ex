@@ -1,4 +1,33 @@
 defmodule Logglix do
+  @moduledoc """
+    This module contains the GenEvent that you can use to transmit the logs of
+    your applications.
+
+    ### Configuring
+
+    By default the LOGGLY_KEY environment variable is used to find
+    your API key for Loggly. You can also manually set your API key by
+    configuring the :logglix application. 
+
+        config :logger, :logglix,
+          loggly_key: System.get_env("LOGGLY_KEY"),
+          tags: ["elixir"],
+          level: :info,
+          environment: :prod
+
+    The configuration defaults to:
+
+        config :logger, :logglix,
+          host: "http://logs-01.loggly.com",
+          loggly_key: System.get_env("LOGGLY_KEY"),
+          tags: [],
+          level: :info,
+          metadata: [],
+          formatter: Logger.Formatter,
+          timeout: 5000,
+          type: :inputs
+  """
+
   use GenEvent
 
   @api_host "http://logs-01.loggly.com"
@@ -13,42 +42,22 @@ defmodule Logglix do
     """
   end
 
-  @moduledoc """
-    This module contains the GenEvent that you can use to transmit the logs of
-    your applications.
-    ### Configuring
-    By default the LOGGLY_KEY environment variable is used to find
-    your API key for Loggly. You can also manually set your API key by
-    configuring the :logglix application. 
-        config :logger, :logglix,
-          loggly_key: System.get_env("LOGGLY_KEY"),
-          tags: ["elixir"],
-          level: :info,
-          environment: :prod
-
-  """
-
+  @doc false
   def init({__MODULE__, name}) do
     {:ok, setup(name, []) }
   end
 
-  @doc """
-  Changes backend setup.
-  """
+  @doc false
   def handle_call({:setup, opts}, %{name: name}) do
     {:ok, :ok, setup(name, opts)}
   end
 
-  @doc """
-  Ignore messages where the group leader is in a different node.
-  """
+  @doc false
   def handle_event({_level, gl, _event}, config) when node(gl) != node() do
     {:ok, config}
   end
 
-  @doc """
-  Handles an log event. Ignores the log event if the event level is less than the min log level.
-  """
+  @doc false
   def handle_event({level, _gl, {Logger, msg, timestamp, metadata}}, config) do
     if meet_level?(level, config.level) do
       log_event(level, msg, timestamp, metadata, config)
@@ -123,5 +132,4 @@ defmodule Logglix do
       tags: tags,
       timeout: timeout}
   end
-
 end

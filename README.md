@@ -1,7 +1,12 @@
-Logglix
-=================
+<h1 align="center">🎱 Logglix</h1>
 
-A simple elixir `Logger` backend which sends logs to Loggly service.
+<h5 align="center">A simple elixir Logger backend which sends logs to Loggly service.</h5>
+
+<div align="center">
+  <a href="https://hex.pm/packages/logglix">
+    <img src="https://img.shields.io/hexpm/dt/logglix.svg?style=flat-square" alt="Hex" />
+  </a>
+</div>
 
 ## Installation
 
@@ -34,7 +39,11 @@ config :logger, :logglix,
   level: :info
 ```
 
+## Resources
 
-## Roadmap
+* [Contributing Guide](https://github.com/pragmaticivan/logglix/blob/master/CONTRIBUTING.md)
+* [Code of Conduct](https://github.com/pragmaticivan/logglix/blob/master/CODE_OF_CONDUCT.md)
 
-[  ] Subscription by environment
+## License
+
+[MIT License](http://pragmaticivan.mit-license.org/) © Ivan Santos

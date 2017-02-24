@@ -17,19 +17,24 @@ defmodule Logglix.Mixfile do
   end
 
   defp deps do
-    [{:httpoison, "~> 0.8.1"}]
+    [
+      {:httpoison, "~> 0.11.0"},
+      {:credo, "~> 0.4", only: [:dev, :test]},
+      {:ex_doc, ">= 0.0.0", only: :dev}
+    ]
   end
 
   defp description do
     """
-      Elixir loggly application event subscriber
+      Elixir loggly is a backend that forwards all log messages to the Loggly service.
     """
   end
 
   defp package do
     [
+      files: ["lib", "mix.exs", "README.md" ],
       maintainers: ["Ivan Santos"],
-      licenses: ["ISC"],
+      licenses: ["MIT"],
       links: %{"Github": "https://github.com/pragmaticivan/logglix"}
     ]
   end
