@@ -7,7 +7,7 @@ defmodule Logglix do
 
     By default the LOGGLY_KEY environment variable is used to find
     your API key for Loggly. You can also manually set your API key by
-    configuring the :logglix application. 
+    configuring the :logglix application.
 
         config :logger, :logglix,
           loggly_key: System.get_env("LOGGLY_KEY"),
@@ -44,7 +44,7 @@ defmodule Logglix do
 
   @doc false
   def init({__MODULE__, name}) do
-    {:ok, setup(name, []) }
+    {:ok, setup(name, [])}
   end
 
   @doc false
@@ -122,9 +122,10 @@ defmodule Logglix do
     host = get_config(opts, :host, @api_host)
     metadata = get_config(opts, :metadata, [])
     formatter = get_config(opts, :formatter, Logger.Formatter)
+    tags_inline = Enum.join(tags, ",")
 
     %{name: name,
-      url: "#{host}/#{log_type}/#{loggly_key}/tag/#{Enum.join(tags, ",")}",
+      url: "#{host}/#{log_type}/#{loggly_key}/tag/#{tags_inline}",
       format: format,
       formatter: formatter,
       level: level,

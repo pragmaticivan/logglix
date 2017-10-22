@@ -7,9 +7,9 @@ defmodule Logglix.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     description: description,
-     package: package,
-     deps: deps]
+     description: description(),
+     package: package(),
+     deps: deps()]
   end
 
   def application do
@@ -18,9 +18,9 @@ defmodule Logglix.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 0.11.0"},
-      {:credo, "~> 0.4", only: [:dev, :test]},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:credo, "~> 0.8.8", only: [:dev, :test]},
+      {:ex_doc, ">= 0.18.1", only: :dev},
+      {:httpoison, "~> 0.13.0"}
     ]
   end
 
