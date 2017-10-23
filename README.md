@@ -17,7 +17,7 @@ such, it relies on the `:logger` application to start the relevant processes.
 Add logger_loggly_backend to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
-  [{:logglix, "~> 0.0.1"}]
+  [{:logglix, "~> 1.0.0"}]
 end
 ```
 
